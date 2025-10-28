@@ -3,7 +3,7 @@ env/
 railway-token.txt
 .env
 .env.dev
-logs/
+*.log
 
 # ignore uv related
 .venv
