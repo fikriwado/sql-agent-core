@@ -8,7 +8,6 @@ if os.environ.get("ENVIRONMENT") != "os":
 else:
     logger.info("Load env from os")
 
-
 DATABASE_URL = os.environ.get("DATABASE_URL")
 LLM_BASE_URL = os.environ.get("LLM_BASE_URL")
 LLM_API_KEY = os.environ.get("LLM_API_KEY")
