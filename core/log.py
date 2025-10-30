@@ -1,5 +1,6 @@
 import logging
 from pathlib import Path
+from settings import APP_ENV
 from logging.handlers import RotatingFileHandler
 
 log_dir = "storage/logs"
@@ -19,6 +20,7 @@ class AppOnlyFilter(logging.Filter):
 
 file_handler.addFilter(AppOnlyFilter())
 
-logging.basicConfig(level=logging.INFO, handlers=[stream_handler, file_handler])
+level = logging.WARNING if APP_ENV == "production" else logging.DEBUG
+logging.basicConfig(level=level, handlers=[stream_handler, file_handler])
 
 logger = logging.getLogger("app")

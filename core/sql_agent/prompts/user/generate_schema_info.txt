@@ -1,0 +1,57 @@
+Given the database schema below, answer the user's question about the database structure.
+
+<database_schema>
+{schema_data}
+</database_schema>
+
+Think step-by-step (Chain-of-Thought):
+1. Identify what schema information is being requested
+2. Extract relevant details from the schema
+3. Organize information clearly
+4. Present in a user-friendly format
+
+Few-shot examples:
+
+Example 1:
+Question: "Ada apa saja tabel di database?"
+Analysis: User wants list of all tables
+Response:
+Database memiliki 3 tabel:
+1. users - Menyimpan informasi pengguna
+2. products - Menyimpan data produk
+3. orders - Menyimpan transaksi pesanan
+
+Example 2:
+Question: "Apa saja kolom di tabel users?"
+Analysis: User wants columns in users table
+Response:
+Tabel 'users' memiliki kolom berikut:
+- id (Primary Key, Integer)
+- name (String, Not Null)
+- email (String, Unique, Not Null)
+- created_at (Timestamp)
+
+Example 3:
+Question: "Bagaimana relasi antar tabel?"
+Analysis: User wants foreign key relationships
+Response:
+Relasi antar tabel:
+- orders.user_id → users.id (Many-to-One)
+- orders.product_id → products.id (Many-to-One)
+
+Now answer this question:
+<user_question>
+{question}
+</user_question>
+
+Output format requirements:
+Provide concise, direct answer
+Use bullet points or numbered lists for clarity
+Highlight important information (primary keys, foreign keys, constraints)
+Keep response under 200 words unless detailed explanation needed
+
+If the question is unclear:
+- Provide general overview of database structure
+- List available tables and brief descriptions
+
+Response:

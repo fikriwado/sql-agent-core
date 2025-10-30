@@ -7,7 +7,13 @@ class DatabaseClient:
     def __init__(self, url: str = None):
         self.url = url or DATABASE_URL
         self.engine = create_engine(self.url)
-        self.inspector = inspect(self.engine)
+
+        try:
+            self.test_connection()
+            self.inspector = inspect(self.engine)
+        except SQLAlchemyError as e:
+            logger.critical(f"Cannot connect to database: {e}")
+            raise SystemExit(1)
 
     def test_connection(self):
         try:
