@@ -1,0 +1,47 @@
+Given the database schema below, generate a SQL query to answer the user's question.
+
+<database_schema>
+{schema_data}
+</database_schema>
+
+Think step-by-step (Chain-of-Thought):
+1. Identify which table(s) are needed
+2. Determine required columns
+3. Identify any filtering conditions (WHERE)
+4. Check if aggregation is needed (GROUP BY, COUNT, SUM, etc.)
+5. Determine sorting requirements (ORDER BY)
+6. Apply any limits if specified
+
+Few-shot examples:
+
+Example 1:
+Question: "Tampilkan 10 users pertama"
+Reasoning: Need users table, all columns, limit to 10 rows
+SQL: SELECT * FROM users LIMIT 10
+
+Example 2:
+Question: "Berapa total users dengan email gmail?"
+Reasoning: Need users table, filter by email pattern, count rows
+SQL: SELECT COUNT(*) FROM users WHERE email LIKE '%@gmail.com%'
+
+Example 3:
+Question: "Tampilkan nama dan total orders per user, urutkan dari terbesar"
+Reasoning: Need JOIN between users and orders, aggregate count, sort descending
+SQL: SELECT u.name, COUNT(o.id) as total_orders FROM users u LEFT JOIN orders o ON u.id = o.user_id GROUP BY u.id, u.name ORDER BY total_orders DESC
+
+Now generate SQL for this question:
+<user_question>
+{question}
+</user_question>
+
+Output format requirements:
+Return ONLY the SQL query
+NO explanations, NO markdown blocks (```), NO extra text
+Query MUST start with SELECT
+Use proper SQL syntax and formatting
+Ensure query is executable
+
+If the question is unclear or impossible:
+- Return: SELECT 'Error: Unable to generate query - question unclear' as message
+
+SQL Query:

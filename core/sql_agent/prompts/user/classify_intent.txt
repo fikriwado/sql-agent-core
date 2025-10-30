@@ -1,0 +1,31 @@
+Classify the following question into either "query" or "schema_info".
+
+Examples for reference:
+
+Example 1:
+Question: "Ada apa saja tabel di database?"
+Analysis: User is asking about database structure (tables)
+Classification: schema_info
+
+Example 2:
+Question: "Tampilkan 10 users pertama"
+Analysis: User wants to retrieve data (users)
+Classification: query
+
+Example 3:
+Question: "Berapa jumlah kolom di tabel products?"
+Analysis: User is asking about table structure (columns)
+Classification: schema_info
+
+Example 4:
+Question: "Cari semua orders dengan total > 1000000"
+Analysis: User wants to retrieve specific data (orders with condition)
+Classification: query
+
+Now classify this question:
+Question: "{question}"
+
+Output format: Return ONLY one word - either "query" or "schema_info"
+If unsure, default to "query"
+
+Classification:
