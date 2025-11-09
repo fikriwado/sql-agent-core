@@ -7,9 +7,9 @@ from core.database import DatabaseClient
 class SQLAgent:
     __base_dir = "core/sql_agent/prompts"
 
-    def __init__(self):
+    def __init__(self, url: str = None):
         self.llm = LLMClient()
-        self.db = DatabaseClient()
+        self.db = DatabaseClient(url)
 
     def classify_intent(self, question: str):
         try:

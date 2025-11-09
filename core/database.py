@@ -12,8 +12,19 @@ class DatabaseClient:
             self.test_connection()
             self.inspector = inspect(self.engine)
         except SQLAlchemyError as e:
-            logger.critical(f"Cannot connect to database: {e}")
-            raise SystemExit(1)
+            logger.critical(f"Database connection failed: {e}")
+            raise RuntimeError("Database connection failed") from e
+
+    @staticmethod
+    def build_database_url(db_type, host, username, password, db_name):
+        driver_map = {
+            "mysql": "mysql+pymysql",
+            "postgresql": "postgresql+psycopg2",
+            "mariadb": "mysql+pymysql",
+        }
+
+        driver = driver_map.get(db_type, "mysql+pymysql")
+        return f"{driver}://{username}:{password}@{host}/{db_name}"
 
     def test_connection(self):
         try:
